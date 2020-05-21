@@ -1,0 +1,29 @@
+spring.cloud.stream:
+  kafka:
+    binder:
+      brokers: localhost:9092
+      requiredAcks: all
+      healthTimeout: 10
+  bindings:
+    actor-sink:
+      destination: topic-jdbc-connector-actor
+
+spring.datasource:
+  driverClassName: org.mariadb.jdbc.Driver
+  url: jdbc:mariadb://localhost:3306/sakila?characterEncoding=UTF-8&serverTimezone=KST
+  username: root
+  password: root
+
+mybatis:
+  type-aliases-package: com.example.actorsink.domain
+  mapper-locations: mybatis/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    return-instance-for-empty-row: false
+
+logging.level:
+  root: INFO
+  com.example.actorsink.mapper: TRACE
+
+server:
+  port: 8080  servlet:    context-path: /

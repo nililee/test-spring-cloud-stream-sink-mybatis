@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.actorsink.mapper.ActorMapper">
+
+    <select id="selectActorById" resultType="actor">
+        SELECT ACTOR_ID
+             , FIRST_NAME
+             , LAST_NAME
+             , FULL_NAME
+             , LAST_UPDATE
+             , CREATION_TIME
+          FROM actor_target_added
+         WHERE ACTOR_ID = #{actor_id}
+    </select>
+
+    <select id="selectActors" resultType="actor">
+        SELECT ACTOR_ID
+             , FIRST_NAME
+             , LAST_NAME
+             , FULL_NAME
+             , LAST_UPDATE
+             , CREATION_TIME
+          FROM actor_target_added
+    </select>
+
+    <insert id="insertActor" parameterType="actor">
+      INSERT INTO actor_target_added (
+             ACTOR_ID
+           , FIRST_NAME
+           , LAST_NAME
+           , FULL_NAME
+           , LAST_UPDATE
+           , CREATION_TIME
+           ) VALUES (
+             #{actorId}
+           , #{firstName}
+           , #{lastName}
+           , #{fullName}
+           , #{lastUpdate}
+           , #{creationTime}
+           )
+    </insert>
+
+</mapper>
